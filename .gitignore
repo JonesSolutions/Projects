@@ -240,3 +240,6 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
+/HelloWorldVS-angular2/
+/Repo/MVC-Movie/
+/TestToSpeech/TextToSpeech/TextToSpeech/

@@ -1,0 +1,90 @@
+﻿@model NMHASurvey.Models.Survey
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Survey</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.hospital.hospitalName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.hospital.hospitalName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.payer.payerName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.payer.payerName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.submitDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.submitDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.contactName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.contactName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.contactEmail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.contactEmail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.contactPhone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.contactPhone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mcoResponse)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mcoResponse)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.claimNumbers)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.claimNumbers)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.surveyId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

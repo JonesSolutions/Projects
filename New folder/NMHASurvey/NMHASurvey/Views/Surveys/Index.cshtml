@@ -1,0 +1,81 @@
+﻿@model IEnumerable<NMHASurvey.Models.Survey>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.hospital.hospitalName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.payer.payerName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.submitDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.contactName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.contactEmail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.contactPhone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.mcoResponse)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.claimNumbers)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.hospital.hospitalName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.payer.payerName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.submitDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.contactName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.contactEmail)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.contactPhone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.mcoResponse)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.claimNumbers)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.surveyId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.surveyId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.surveyId })
+        </td>
+    </tr>
+}
+
+</table>
