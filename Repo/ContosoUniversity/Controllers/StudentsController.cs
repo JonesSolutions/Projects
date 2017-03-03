@@ -42,7 +42,7 @@ namespace ContosoUniversity.Controllers
             if (!String.IsNullOrEmpty(searchString))
             {
                 students = students.Where(s => s.LastName.Contains(searchString)
-                || s.FirstName.Contains(searchString));
+                || s.FirstMidName.Contains(searchString));
             }
 
             switch (sortOrder)
@@ -77,7 +77,7 @@ namespace ContosoUniversity.Controllers
                 .Include(s => s.Enrollments)
                     .ThenInclude(e => e.Course)
                 .AsNoTracking()
-                .SingleOrDefaultAsync(m => m.ID == id);
+                .SingleOrDefaultAsync(m => m.Id == id);
 
             if (student == null)
             {
@@ -128,7 +128,7 @@ namespace ContosoUniversity.Controllers
                 return NotFound();
             }
 
-            var student = await _context.Students.SingleOrDefaultAsync(m => m.ID == id);
+            var student = await _context.Students.SingleOrDefaultAsync(m => m.Id == id);
             if (student == null)
             {
                 return NotFound();
@@ -144,7 +144,7 @@ namespace ContosoUniversity.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("EnrollmentDate,FirstName,LastName")] Student student)
         {
-            if (id != student.ID)
+            if (id != student.Id)
             {
                 return NotFound();
             }
@@ -158,7 +158,7 @@ namespace ContosoUniversity.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!StudentExists(student.ID))
+                    if (!StudentExists(student.Id))
                     {
                         return NotFound();
                     }
@@ -182,7 +182,7 @@ namespace ContosoUniversity.Controllers
 
             var student = await _context.Students
                 .AsNoTracking()
-                .SingleOrDefaultAsync(m => m.ID == id);
+                .SingleOrDefaultAsync(m => m.Id == id);
             if (student == null)
             {
                 return NotFound();
@@ -202,7 +202,7 @@ namespace ContosoUniversity.Controllers
         {
             var student = await _context.Students
                 .AsNoTracking()
-                .SingleOrDefaultAsync(m => m.ID == id);
+                .SingleOrDefaultAsync(m => m.Id == id);
             if (student == null)
             {
                 return RedirectToAction("Index");
@@ -222,7 +222,7 @@ namespace ContosoUniversity.Controllers
 
         private bool StudentExists(int id)
         {
-            return _context.Students.Any(e => e.ID == id);
+            return _context.Students.Any(e => e.Id == id);
         }
     }
 }

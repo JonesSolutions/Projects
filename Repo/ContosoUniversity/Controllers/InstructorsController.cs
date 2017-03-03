@@ -41,7 +41,7 @@ namespace ContosoUniversity.Controllers
             if (id != null)
             {
                 ViewData["InstructorId"] = id.Value;
-                Instructor instructor = viewModel.Instructors.Where(i => i.ID == id.Value).Single();
+                Instructor instructor = viewModel.Instructors.Where(i => i.Id == id.Value).Single();
                 viewModel.Courses = instructor.Courses.Select(s => s.Course);
             }
 
@@ -67,7 +67,7 @@ namespace ContosoUniversity.Controllers
                 return NotFound();
             }
 
-            var instructor = await _context.Instructors.SingleOrDefaultAsync(m => m.ID == id);
+            var instructor = await _context.Instructors.SingleOrDefaultAsync(m => m.Id == id);
             if (instructor == null)
             {
                 return NotFound();
@@ -106,7 +106,7 @@ namespace ContosoUniversity.Controllers
                 return NotFound();
             }
 
-            var instructor = await _context.Instructors.SingleOrDefaultAsync(m => m.ID == id);
+            var instructor = await _context.Instructors.SingleOrDefaultAsync(m => m.Id == id);
             if (instructor == null)
             {
                 return NotFound();
@@ -121,7 +121,7 @@ namespace ContosoUniversity.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("ID,FirstMidName,HireDate,LastName")] Instructor instructor)
         {
-            if (id != instructor.ID)
+            if (id != instructor.Id)
             {
                 return NotFound();
             }
@@ -135,7 +135,7 @@ namespace ContosoUniversity.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!InstructorExists(instructor.ID))
+                    if (!InstructorExists(instructor.Id))
                     {
                         return NotFound();
                     }
@@ -157,7 +157,7 @@ namespace ContosoUniversity.Controllers
                 return NotFound();
             }
 
-            var instructor = await _context.Instructors.SingleOrDefaultAsync(m => m.ID == id);
+            var instructor = await _context.Instructors.SingleOrDefaultAsync(m => m.Id == id);
             if (instructor == null)
             {
                 return NotFound();
@@ -171,7 +171,7 @@ namespace ContosoUniversity.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var instructor = await _context.Instructors.SingleOrDefaultAsync(m => m.ID == id);
+            var instructor = await _context.Instructors.SingleOrDefaultAsync(m => m.Id == id);
             _context.Instructors.Remove(instructor);
             await _context.SaveChangesAsync();
             return RedirectToAction("Index");
@@ -179,7 +179,7 @@ namespace ContosoUniversity.Controllers
 
         private bool InstructorExists(int id)
         {
-            return _context.Instructors.Any(e => e.ID == id);
+            return _context.Instructors.Any(e => e.Id == id);
         }
     }
 }
