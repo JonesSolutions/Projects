@@ -69,16 +69,16 @@ namespace ContosoUniversity.Models
             {
                 new Department { Name = "English",     Budget = 350000,
                     StartDate = DateTime.Parse("2007-09-01"),
-                    InstructorID  = context.Instructors.Single( i => i.LastName == "Abercrombie").Id },
+                    InstructorId  = context.Instructors.Single( i => i.LastName == "Abercrombie").Id },
                 new Department { Name = "Mathematics", Budget = 100000,
                     StartDate = DateTime.Parse("2007-09-01"),
-                    InstructorID  = context.Instructors.Single( i => i.LastName == "Fakhouri").Id },
+                    InstructorId  = context.Instructors.Single( i => i.LastName == "Fakhouri").Id },
                 new Department { Name = "Engineering", Budget = 350000,
                     StartDate = DateTime.Parse("2007-09-01"),
-                    InstructorID  = context.Instructors.Single( i => i.LastName == "Harui").Id },
+                    InstructorId  = context.Instructors.Single( i => i.LastName == "Harui").Id },
                 new Department { Name = "Economics",   Budget = 100000,
                     StartDate = DateTime.Parse("2007-09-01"),
-                    InstructorID  =context.Instructors.Single( i => i.LastName == "Kapoor").Id }
+                    InstructorId  =context.Instructors.Single( i => i.LastName == "Kapoor").Id }
             };
 
             foreach (Department d in departments)
@@ -92,25 +92,25 @@ namespace ContosoUniversity.Models
                 var courses = new Course[]
                 {
                 new Course {CourseId = 1050, Title = "Chemistry",      Credits = 3,
-                    DepartmentId = context.Departments.Single( s => s.Name == "Engineering").DepartmentID
+                    DepartmentId = context.Departments.Single( s => s.Name == "Engineering").DepartmentId
                 },
                 new Course {CourseId = 4022, Title = "Microeconomics", Credits = 3,
-                    DepartmentId = context.Departments.Single( s => s.Name == "Economics").DepartmentID
+                    DepartmentId = context.Departments.Single( s => s.Name == "Economics").DepartmentId
                 },
                 new Course {CourseId = 4041, Title = "Macroeconomics", Credits = 3,
-                    DepartmentId = context.Departments.Single( s => s.Name == "Economics").DepartmentID
+                    DepartmentId = context.Departments.Single( s => s.Name == "Economics").DepartmentId
                 },
                 new Course {CourseId = 1045, Title = "Calculus",       Credits = 4,
-                    DepartmentId = context.Departments.Single( s => s.Name == "Mathematics").DepartmentID
+                    DepartmentId = context.Departments.Single( s => s.Name == "Mathematics").DepartmentId
                 },
                 new Course {CourseId = 3141, Title = "Trigonometry",   Credits = 4,
-                    DepartmentId = context.Departments.Single( s => s.Name == "Mathematics").DepartmentID
+                    DepartmentId = context.Departments.Single( s => s.Name == "Mathematics").DepartmentId
                 },
                 new Course {CourseId = 2021, Title = "Composition",    Credits = 3,
-                    DepartmentId = context.Departments.Single( s => s.Name == "English").DepartmentID
+                    DepartmentId = context.Departments.Single( s => s.Name == "English").DepartmentId
                 },
                 new Course {CourseId = 2042, Title = "Literature",     Credits = 4,
-                    DepartmentId = context.Departments.Single( s => s.Name == "English").DepartmentID
+                    DepartmentId = context.Departments.Single( s => s.Name == "English").DepartmentId
                 },
             };
 
@@ -125,13 +125,13 @@ namespace ContosoUniversity.Models
             var officeAssignments = new OfficeAssignment[]
             {
                 new OfficeAssignment {
-                    InstructorID = context.Instructors.Single( i => i.LastName == "Fakhouri").Id,
+                    InstructorId = context.Instructors.Single( i => i.LastName == "Fakhouri").Id,
                     Location = "Smith 17" },
                 new OfficeAssignment {
-                    InstructorID = context.Instructors.Single( i => i.LastName == "Harui").Id,
+                    InstructorId = context.Instructors.Single( i => i.LastName == "Harui").Id,
                     Location = "Gowan 27" },
                 new OfficeAssignment {
-                    InstructorID = context.Instructors.Single( i => i.LastName == "Kapoor").Id,
+                    InstructorId = context.Instructors.Single( i => i.LastName == "Kapoor").Id,
                     Location = "Thompson 304" },
             };
 
@@ -147,36 +147,36 @@ namespace ContosoUniversity.Models
             var courseInstructors = new CourseAssignment[]
             {
                 new CourseAssignment {
-                    CourseID = context.Courses.Single(c => c.Title == "Chemistry" ).CourseId,
-                    InstructorID = context.Instructors.Single(i => i.LastName == "Kapoor").Id
+                    CourseId = context.Courses.Single(c => c.Title == "Chemistry" ).CourseId,
+                    InstructorId = context.Instructors.Single(i => i.LastName == "Kapoor").Id
                     },
                 new CourseAssignment {
-                    CourseID = context.Courses.Single(c => c.Title == "Chemistry" ).CourseId,
-                    InstructorID = context.Instructors.Single(i => i.LastName == "Harui").Id
+                    CourseId = context.Courses.Single(c => c.Title == "Chemistry" ).CourseId,
+                    InstructorId = context.Instructors.Single(i => i.LastName == "Harui").Id
                     },
                 new CourseAssignment {
-                    CourseID = context.Courses.Single(c => c.Title == "Microeconomics" ).CourseId,
-                    InstructorID = context.Instructors.Single(i => i.LastName == "Zheng").Id
+                    CourseId = context.Courses.Single(c => c.Title == "Microeconomics" ).CourseId,
+                    InstructorId = context.Instructors.Single(i => i.LastName == "Zheng").Id
                     },
                 new CourseAssignment {
-                    CourseID = context.Courses.Single(c => c.Title == "Macroeconomics" ).CourseId,
-                    InstructorID = context.Instructors.Single(i => i.LastName == "Zheng").Id
+                    CourseId = context.Courses.Single(c => c.Title == "Macroeconomics" ).CourseId,
+                    InstructorId = context.Instructors.Single(i => i.LastName == "Zheng").Id
                     },
                 new CourseAssignment {
-                    CourseID = context.Courses.Single(c => c.Title == "Calculus" ).CourseId,
-                    InstructorID = context.Instructors.Single(i => i.LastName == "Fakhouri").Id
+                    CourseId = context.Courses.Single(c => c.Title == "Calculus" ).CourseId,
+                    InstructorId = context.Instructors.Single(i => i.LastName == "Fakhouri").Id
                     },
                 new CourseAssignment {
-                    CourseID = context.Courses.Single(c => c.Title == "Trigonometry" ).CourseId,
-                    InstructorID = context.Instructors.Single(i => i.LastName == "Harui").Id
+                    CourseId = context.Courses.Single(c => c.Title == "Trigonometry" ).CourseId,
+                    InstructorId = context.Instructors.Single(i => i.LastName == "Harui").Id
                     },
                 new CourseAssignment {
-                    CourseID = context.Courses.Single(c => c.Title == "Composition" ).CourseId,
-                    InstructorID = context.Instructors.Single(i => i.LastName == "Abercrombie").Id
+                    CourseId = context.Courses.Single(c => c.Title == "Composition" ).CourseId,
+                    InstructorId = context.Instructors.Single(i => i.LastName == "Abercrombie").Id
                     },
                 new CourseAssignment {
-                    CourseID = context.Courses.Single(c => c.Title == "Literature" ).CourseId,
-                    InstructorID = context.Instructors.Single(i => i.LastName == "Abercrombie").Id
+                    CourseId = context.Courses.Single(c => c.Title == "Literature" ).CourseId,
+                    InstructorId = context.Instructors.Single(i => i.LastName == "Abercrombie").Id
                     },
             };
 

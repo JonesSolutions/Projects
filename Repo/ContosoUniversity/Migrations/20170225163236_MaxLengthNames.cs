@@ -26,7 +26,7 @@ namespace ContosoUniversity.Migrations
                 name: "Student",
                 columns: table => new
                 {
-                    ID = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     EnrollmentDate = table.Column<DateTime>(nullable: false),
                     FirstName = table.Column<string>(nullable: true),
@@ -34,7 +34,7 @@ namespace ContosoUniversity.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Student", x => x.ID);
+                    table.PrimaryKey("PK_Student", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -60,7 +60,7 @@ namespace ContosoUniversity.Migrations
                         name: "FK_Enrollment_Student_StudentId",
                         column: x => x.StudentId,
                         principalTable: "Student",
-                        principalColumn: "ID",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 

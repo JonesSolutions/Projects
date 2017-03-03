@@ -60,7 +60,7 @@ namespace ContosoUniversity.Controllers
             var departmentQuery = from d in _context.Departments
                                   orderby d.Name
                                   select d;
-            ViewBag.DepartmentId = new SelectList(departmentQuery.AsNoTracking(), "DepartmentID", "Name", selectedDepartment);
+            ViewBag.DepartmentId = new SelectList(departmentQuery.AsNoTracking(), "DepartmentId", "Name", selectedDepartment);
         }
 
         // POST: Courses/Create
@@ -168,5 +168,23 @@ namespace ContosoUniversity.Controllers
         {
             return _context.Courses.Any(e => e.CourseId == id);
         }
+
+        public IActionResult UpdateCourseCredits()
+        {
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> UpdateCourseCredits(double? multiplier)
+        {
+            if (multiplier != null)
+            {
+                ViewData["RowsAffected"] =
+                    await _context.Database.ExecuteSqlCommandAsync(
+                        "UPDATE Course SET Credits = Credits * {0}",
+                        parameters: multiplier);
+            }
+            return View();
+        }
+
     }
 }
