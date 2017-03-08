@@ -12,6 +12,7 @@ using Microsoft.Extensions.Logging;
 using ContosoUniversity.Data;
 using ContosoUniversity.Models;
 using ContosoUniversity.Services;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ContosoUniversity
 {
@@ -46,15 +47,49 @@ namespace ContosoUniversity
             services.AddDbContext<SchoolContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddIdentity<ApplicationUser, IdentityRole>()
+            services.AddIdentity<ApplicationUser, IdentityRole>(config =>
+            {
+                config.SignIn.RequireConfirmedEmail = true;
+            })
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
             services.AddMvc();
 
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("Administrators", policy =>
+                policy.RequireRole("Administrator"));
+            });
+
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
+            services.Configure<AuthMessageSenderOptions>(Configuration);
+
+            services.Configure<IdentityOptions>(options =>
+            {
+                options.Password.RequireDigit = true;
+                options.Password.RequiredLength = 8;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = true;
+                options.Password.RequireLowercase = true;
+
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(30);
+                options.Lockout.MaxFailedAccessAttempts = 5;
+
+                options.Cookies.ApplicationCookie.ExpireTimeSpan = TimeSpan.FromDays(150);
+                options.Cookies.ApplicationCookie.LoginPath = "/Account/LogIn";
+                options.Cookies.ApplicationCookie.LogoutPath = "/Account/LogOff";
+
+                options.User.RequireUniqueEmail = true;
+
+            });
+
+            //services.Configure<MvcOptions>(options =>
+            //{
+            //    options.Filters.Add(new RequireHttpsAttribute());
+            //});
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -80,6 +115,11 @@ namespace ContosoUniversity
             app.UseIdentity();
 
             // Add external authentication middleware below. To configure them please see http://go.microsoft.com/fwlink/?LinkId=532715
+            app.UseGoogleAuthentication(new GoogleOptions()
+            {
+                ClientId = Configuration["Authentication:Google:ClientID"],
+                ClientSecret =  Configuration["Authentication:Google:ClientSecret"]
+            });
 
             app.UseMvc(routes =>
             {

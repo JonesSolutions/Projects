@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ContosoUniversity.Data;
 using ContosoUniversity.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ContosoUniversity.Controllers
 {
+    [Authorize]
     public class CoursesController : Controller
     {
         private readonly SchoolContext _context;
@@ -18,7 +20,7 @@ namespace ContosoUniversity.Controllers
         {
             _context = context;    
         }
-
+        [AllowAnonymous]
         // GET: Courses
         public async Task<IActionResult> Index()
         {
@@ -27,7 +29,7 @@ namespace ContosoUniversity.Controllers
                 .AsNoTracking();
             return View(await courses.ToListAsync());
         }
-
+        [AllowAnonymous]
         // GET: Courses/Details/5
         public async Task<IActionResult> Details(int? id)
         {

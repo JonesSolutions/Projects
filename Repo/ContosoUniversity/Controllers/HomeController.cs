@@ -10,6 +10,7 @@ using System.Data.Common;
 
 namespace ContosoUniversity.Controllers
 {
+    
     public class HomeController : Controller
     {
         private readonly SchoolContext _context;
