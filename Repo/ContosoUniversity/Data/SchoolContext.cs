@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using ContosoUniversity.Models;
 using Microsoft.EntityFrameworkCore;
+using ContosoUniversity.Models.SchoolViewModels;
 
 namespace ContosoUniversity.Data
 {
@@ -13,6 +14,11 @@ namespace ContosoUniversity.Data
         {
 
         }
+       
+        //public SchoolContext()
+        //{
+
+        //}
 
         public DbSet<Course> Courses { get; set; }
         public DbSet<Enrollment> Enrollments { get; set; }
@@ -25,6 +31,7 @@ namespace ContosoUniversity.Data
 
         public DbSet<Person> People { get; set; }
 
+       
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -39,5 +46,9 @@ namespace ContosoUniversity.Data
             modelBuilder.Entity<CourseAssignment>().
                 HasKey(c => new { c.CourseId, c.InstructorId });
         }
+
+       
+
+        //public DbSet<StudentViewModel> StudentViewModel { get; set; }
     }
 }

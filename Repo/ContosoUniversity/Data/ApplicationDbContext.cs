@@ -14,6 +14,10 @@ namespace ContosoUniversity.Data
             : base(options)
         {
         }
+        public ApplicationDbContext()
+        {
+                
+        }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

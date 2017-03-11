@@ -118,7 +118,7 @@ namespace ContosoUniversity
             app.UseGoogleAuthentication(new GoogleOptions()
             {
                 ClientId = Configuration["Authentication:Google:ClientID"],
-                ClientSecret =  Configuration["Authentication:Google:ClientSecret"]
+                ClientSecret = Configuration["Authentication:Google:ClientSecret"]
             });
 
             app.UseMvc(routes =>
